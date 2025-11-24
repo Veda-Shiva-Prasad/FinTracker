@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FinTracker</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/frontend/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="header-content">
+          <div class="title-section">
+            <h1>FinTracker</h1>
+            <p>Simple Personal Finance Tracker</p>
+            <div class="current-time" id="current-time"></div>
+          </div>
+          <div class="user-section">
+            <span id="user-welcome" class="welcome-text">Welcome!</span>
+            <div class="login-info" id="last-login"></div>
+            <div class="button-group">
+              <button id="logout-btn" class="btn-secondary">🚪 Logout</button>
+              <button id="theme-toggle" class="btn-primary">
+                🌙 Dark Mode
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <div class="grid-layout">
+          <!-- Compact Summary Section -->
+          <section class="summary-section card">
+            <h2>💰 Financial Summary</h2>
+            <div class="summary-cards">
+              <div class="summary-card income">
+                <h3>Total Income</h3>
+                <div class="summary-amount" id="total-income">₹0</div>
+              </div>
+
+              <div class="summary-card expense">
+                <h3>Total Expense</h3>
+                <div class="summary-amount" id="total-expense">₹0</div>
+              </div>
+
+              <div class="summary-card balance" id="balance-card">
+                <h3>Balance</h3>
+                <div class="summary-amount" id="balance">₹0</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Budget Section -->
+          <section id="budget" class="card">
+            <h2>🎯 Monthly Budget</h2>
+            <div id="budget-display">
+              <div class="budget-loading">Loading budget info...</div>
+            </div>
+            <div class="budget-form">
+              <h3>Set Monthly Budget</h3>
+              <form id="budget-form">
+                <div class="form-row">
+                  <label>
+                    Month:
+                    <select id="budget-month" required>
+                      <option value="1">January</option>
+                      <option value="2">February</option>
+                      <option value="3">March</option>
+                      <option value="4">April</option>
+                      <option value="5">May</option>
+                      <option value="6">June</option>
+                      <option value="7">July</option>
+                      <option value="8">August</option>
+                      <option value="9">September</option>
+                      <option value="10">October</option>
+                      <option value="11">November</option>
+                      <option value="12">December</option>
+                    </select>
+                  </label>
+                  <label>
+                    Year:
+                    <input
+                      type="number"
+                      id="budget-year"
+                      value="2024"
+                      min="2000"
+                      max="2030"
+                      required
+                    />
+                  </label>
+                  <label>
+                    Budget Amount (₹):
+                    <input
+                      type="number"
+                      id="budget-amount"
+                      placeholder="Enter monthly budget"
+                      required
+                    />
+                  </label>
+                </div>
+                <button type="submit" class="btn-submit">Set Budget</button>
+              </form>
+            </div>
+          </section>
+
+          <!-- Export/Import Section -->
+          <section id="data-export" class="card">
+            <h2>📂 Data Management</h2>
+            <div class="export-import-grid">
+              <div class="export-section">
+                <h3>Export Data</h3>
+                <p>Download your transactions as CSV file</p>
+                <button id="export-csv" class="btn-primary">
+                  📥 Export CSV
+                </button>
+              </div>
+
+              <div class="import-section">
+                <h3>Import Data</h3>
+                <p>Upload CSV file to import transactions</p>
+                <input
+                  type="file"
+                  id="csv-file"
+                  accept=".csv"
+                  style="display: none"
+                />
+                <button id="import-csv" class="btn-secondary">
+                  📤 Import CSV
+                </button>
+                <div id="import-result" style="margin-top: 1rem"></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Add Transaction Section -->
+          <section id="add-transaction" class="card">
+            <h2>➕ Add Transaction</h2>
+            <form id="transaction-form">
+              <div class="form-grid">
+                <label>
+                  Type:
+                  <select id="type">
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                  </select>
+                </label>
+                <label>
+                  Amount:
+                  <input
+                    type="number"
+                    id="amount"
+                    placeholder="Enter amount"
+                    required
+                  />
+                </label>
+                <label>
+                  Category:
+                  <input
+                    type="text"
+                    id="category"
+                    placeholder="e.g. Food, Salary"
+                    required
+                  />
+                </label>
+                <label>
+                  Note:
+                  <input type="text" id="note" placeholder="Optional note" />
+                </label>
+              </div>
+              <button type="submit" class="btn-submit">Add Transaction</button>
+              <button
+                type="reset"
+                class="btn-secondary"
+                style="margin-top: 0.5rem"
+              >
+                Cancel Edit
+              </button>
+            </form>
+          </section>
+
+          <!-- Filters & Search Section -->
+          <section id="filters" class="card">
+            <h2>🔍 Filters & Search</h2>
+            <div class="filter-grid">
+              <label>
+                Month:
+                <select id="month-filter">
+                  <option value="">All Months</option>
+                  <option value="1">January</option>
+                  <option value="2">February</option>
+                  <option value="3">March</option>
+                  <option value="4">April</option>
+                  <option value="5">May</option>
+                  <option value="6">June</option>
+                  <option value="7">July</option>
+                  <option value="8">August</option>
+                  <option value="9">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
+                </select>
+              </label>
+              <label>
+                Year:
+                <input
+                  type="number"
+                  id="year-filter"
+                  placeholder="2024"
+                  min="2000"
+                  max="2030"
+                />
+              </label>
+              <label>
+                Category:
+                <input
+                  type="text"
+                  id="category-filter"
+                  placeholder="Filter by category"
+                />
+              </label>
+              <label>
+                Search:
+                <input
+                  type="text"
+                  id="search-filter"
+                  placeholder="Search in notes/category"
+                />
+              </label>
+            </div>
+            <div class="filter-actions">
+              <button id="apply-filters" class="btn-primary">
+                Apply Filters
+              </button>
+              <button id="clear-filters" class="btn-secondary">
+                Clear Filters
+              </button>
+            </div>
+          </section>
+
+          <!-- Transactions List -->
+          <section id="transactions" class="card">
+            <h2>📋 Transactions</h2>
+            <ul id="transaction-list">
+              <!-- items will be added here by js -->
+            </ul>
+          </section>
+
+          <!-- Chart Section -->
+          <section id="charts" class="card">
+            <h2>📊 Spending by Category</h2>
+            <canvas id="categoryChart"></canvas>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

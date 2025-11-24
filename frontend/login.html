@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - FinTracker</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="auth-container">
+      <div class="auth-card">
+        <h1>FinTracker</h1>
+        <p>Sign in to your account</p>
+
+        <form id="login-form">
+          <label>
+            Email:
+            <input
+              type="email"
+              id="email"
+              placeholder="Enter your email"
+              required
+            />
+          </label>
+          <label>
+            Password:
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter your password"
+              required
+            />
+          </label>
+          <button type="submit">Sign In</button>
+        </form>
+
+        <div class="auth-link">
+          Don't have an account? <a href="register.html">Sign up here</a>
+        </div>
+
+        <div id="login-message" style="margin-top: 1rem"></div>
+      </div>
+    </div>
+
+    <script src="auth.js"></script>
+  </body>
+</html>

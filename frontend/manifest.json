@@ -1,0 +1,10 @@
+{
+  "name": "FinTracker",
+  "short_name": "FinTracker",
+  "description": "Personal Finance Tracker",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait"
+}
