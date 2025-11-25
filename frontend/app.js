@@ -1,7 +1,7 @@
 console.log("FinTrackr app loaded");
 
 // API base URL
-const API_BASE = "http://localhost:5000/api";
+const API_BASE = "/api";
 
 // Theme Management
 const themeToggle = document.getElementById("theme-toggle");
