@@ -14,13 +14,17 @@
       }
     }
   ],
+
   "routes": [
     {
-      "src": "^/api/(.*)",
+      "src": "/api/(.*)",
       "dest": "backend1/api/index.js"
     },
     {
-      "src": "^/(.*)",
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
       "dest": "/frontend/dist/index.html"
     }
   ]
