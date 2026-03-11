@@ -1,99 +1,229 @@
-# FinTracker - Your Smart Personal Finance Companion
+# 🚀 FinTracker – Smart Personal Finance Manager
 
-[![Live Demo](https://img.shields.io/badge/Demo-Live-green)](https://your-app.vercel.app)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+FinTracker is a **modern full-stack financial management web application** that helps users track income, expenses, budgets, goals, and financial insights in one place.
 
-A beautiful, full-stack financial management application built with the MERN stack that helps you take control of your money effortlessly.
+Built using the **MERN stack (MongoDB, Express, React, Node.js)** with a modern UI and interactive dashboards.
 
-## ✨ What Makes FinTracker Special?
+---
 
-### 🎯 Core Features That Actually Help You
+# 🌐 Live Demo
 
-**📊 Complete Financial Overview**
+Frontend & Backend deployed on **Vercel**
 
-- **Real-time Balance Tracking** - See exactly where you stand financially
-- **Income vs Expense Analysis** - Understand your cash flow at a glance
-- **Interactive Financial Dashboard** - Beautiful charts and summaries
+```
+https://fintracker.vercel.app
+```
 
-**💸 Smart Transaction Management**
+---
 
-- **Add & Categorize Transactions** - Organize your spending intelligently
-- **Edit & Delete Entries** - Fix mistakes or update details easily
-- **Transaction History** - Review your financial journey over time
+# ✨ Features
 
-**🎯 Budgeting Made Simple**
+## 📊 Financial Dashboard
 
-- **Set Monthly Budgets** - Plan your spending for each category
-- **Budget Progress Tracking** - Visual indicators show how you're doing
-- **Over-budget Alerts** - Get warned before you overspend
+- Real-time balance overview
+- Income vs Expense tracking
+- Interactive financial charts
+- Monthly financial summary
 
-**🔐 Secure & Personal**
+---
 
-- **User Registration & Login** - Your data stays private and secure
-- **JWT Authentication** - Enterprise-grade security for your information
-- **Personal Financial Space** - Only you can see your financial data
+## 💸 Transaction Management
 
-**📱 Designed for Real People**
+- Add income and expense transactions
+- Edit and delete transactions
+- Categorize spending
+- Full transaction history
 
-- **Mobile-Responsive Design** - Works perfectly on phones, tablets, and desktops
-- **Dark/Light Mode** - Choose what's comfortable for your eyes
-- **Intuitive Interface** - No learning curve - just start tracking
+---
 
-### 🛠️ Built With Modern Technology
+## 📂 Categories
 
-**Frontend Magic**
+- Create custom categories
+- Organize expenses easily
+- Category-based tracking
 
-- **Pure HTML, CSS, JavaScript** - Lightning fast and reliable
-- **Responsive CSS Grid & Flexbox** - Looks great on any device
-- **Modern UI/UX Design** - Clean, professional, and user-friendly
+---
 
-**Backend Power**
+## 🔁 Recurring Transactions
 
-- **Node.js & Express.js** - Robust and scalable server
-- **MongoDB Database** - Secure and efficient data storage
-- **JWT Authentication** - Bank-level security for your data
-- **RESTful API Design** - Clean, predictable, and well-structured
+- Manage recurring expenses
+- Automate regular payments
+- Track upcoming expenses
 
-**Security & Performance**
+---
 
-- **Password Hashing** - Your passwords are encrypted and safe
-- **CORS Protection** - Secure cross-origin requests
-- **Error Handling** - Graceful error recovery and user feedback
+## 🎯 Savings Goals
 
-## 🚀 Quick Start
+- Set financial goals
+- Track progress visually
+- Plan savings efficiently
 
-### Prerequisites
+---
 
-- Node.js (v14 or higher)
-- MongoDB (local or Atlas)
-- Modern web browser
+## 📈 Reports & Analytics
 
-### Installation Made Easy
+- Monthly spending analysis
+- Line charts for trends
+- Financial reports dashboard
 
-1. **Get the Code**
+---
 
-   ```bash
-   git clone https://github.com/your-username/FinTracker.git
-   cd FinTracker
+## 🤖 AI Financial Insights
 
-   Install Dependencies
-   npm install
-   ```
+- Smart financial suggestions
+- Spending predictions
+- Expense analysis
 
-Setup Environment (create .env in backend folder)
-MONGODB_URI=mongodb://localhost:27017/fintracker
-JWT_SECRET=your_super_secure_secret_key
-PORT=5000
+---
 
-Start Your Financial Journey
+## ⚙️ Settings
 
-# Start backend server
+- Dark / Light mode
+- Export financial data
+- Manage account settings
 
-npm run dev
+---
 
-# Open frontend (in another terminal)
+# 🛠 Tech Stack
 
+## Frontend
+
+- React.js
+- Vite
+- Tailwind CSS
+- Recharts
+- Framer Motion
+
+## Backend
+
+- Node.js
+- Express.js
+- MongoDB Atlas
+- JWT Authentication
+- REST API
+
+---
+
+# 🔐 Security
+
+- JWT authentication
+- Protected API routes
+- Password hashing
+- Environment variable protection
+
+---
+
+# 📁 Project Structure
+
+```
+FinTracker
+│
+├ backend1
+│   ├ api
+│   ├ src
+│   │   ├ middleware
+│   │   ├ models
+│   │   ├ routes
+│   │   ├ services
+│   │   └ utils
+│
+├ frontend
+│   ├ public
+│   ├ src
+│   │   ├ components
+│   │   ├ pages
+│   │   └ services
+│
+├ vercel.json
+└ README.md
+```
+
+---
+
+# ⚙️ Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/Veda-Shiva-Prasad/FinTracker.git
+cd FinTracker
+```
+
+Install backend dependencies
+
+```bash
+cd backend1
+npm install
+```
+
+Install frontend dependencies
+
+```bash
+cd ../frontend
+npm install
+```
+
+---
+
+# 🔑 Environment Variables
+
+Create a `.env` file inside **backend1**
+
+```
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
+```
+
+---
+
+# ▶ Running Locally
+
+Start backend
+
+```
+cd backend1
+npm start
+```
+
+Start frontend
+
+```
 cd frontend
-live-server --port=3000
+npm run dev
+```
 
-Visit http://localhost:3000 and start tracking!
+Open
+
+```
+http://localhost:5173
+```
+
+---
+
+# 🚀 Deployment
+
+The project is deployed on **Vercel** with serverless backend functions.
+
+Frontend and backend run together using:
+
+```
+vercel.json
+```
+
+---
+
+# 👨‍💻 Author
+
+**Veda Shiva Prasad**
+
+GitHub
+https://github.com/Veda-Shiva-Prasad
+
+LinkedIn
+https://www.linkedin.com/in/vedashivaprasad
+
+---
+
+# ⭐ Support
+
+If you like this project, please **give it a star ⭐ on GitHub**.
