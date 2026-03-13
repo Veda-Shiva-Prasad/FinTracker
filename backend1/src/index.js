@@ -7,27 +7,20 @@ const connectDB = require("./config/db");
 
 const app = express();
 
-console.log("JWT_SECRET loaded:", process.env.JWT_SECRET ? "Yes" : "No");
-console.log("MONGODB_URI loaded:", process.env.MONGODB_URI ? "Yes" : "No");
-
+// Connect to Database
+connectDB();
 
 const corsOptions = {
   origin: [
     "http://localhost:3000",
-    "http://127.0.0.1:5500",
-    "http://localhost:5000",
-    "http://localhost:8080",
-    "http://127.0.0.1:8080",
-    "http://localhost:5501",
-    "http://127.0.0.1:5501",
+    "http://localhost:5173",
+    /\.vercel\.app$/, // Allows all Vercel deployments to talk to the backend
   ],
   credentials: true,
 };
 
 app.use(cors(corsOptions));
 app.use(express.json());
-
-connectDB();
 
 // Routes
 app.use("/api/auth", require("./routes/auth"));
@@ -49,5 +42,5 @@ app.use((req, res) => {
   res.status(404).json({ message: "Route not found" });
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Backend running on port ${PORT}`));
+// Export for Vercel Serverless Functions
+module.exports = app;
