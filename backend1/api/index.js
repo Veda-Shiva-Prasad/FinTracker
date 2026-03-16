@@ -1,12 +1,10 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const path = require("path");
 require("dotenv").config();
 
 const app = express();
 
-// CORS Configuration
 const corsOptions = {
   origin: [
     "http://localhost:3000",
@@ -23,19 +21,22 @@ app.use(cors(corsOptions));
 app.options("*", cors(corsOptions));
 app.use(express.json());
 
-// Database Connection using the Vercel Variable: MONGO_URI
+// Database Connection using MONGODB_URI to match Vercel Settings
 const connectDB = async () => {
   try {
-    // We use MONGO_URI because that is what you saved in Vercel settings
-    await mongoose.connect(process.env.MONGO_URI);
-    console.log("MongoDB Connected Successfully");
+    console.log("Connecting to Database...");
+    if (!process.env.MONGODB_URI) {
+      throw new Error("MONGODB_URI is missing from Environment Variables!");
+    }
+    await mongoose.connect(process.env.MONGODB_URI);
+    console.log("✅ SUCCESS: MongoDB Connected to Atlas");
   } catch (error) {
-    console.error("Database connection error:", error);
+    console.error("❌ DATABASE CONNECTION ERROR:", error.message);
   }
 };
 connectDB();
 
-// Routes - Pointing to your src/routes folder
+// Use routes from the src folder
 app.use("/api/auth", require("../src/routes/auth"));
 app.use("/api/transactions", require("../src/routes/transactions"));
 app.use("/api/budgets", require("../src/routes/budgets"));
@@ -48,12 +49,16 @@ app.use("/api/activities", require("../src/routes/activities"));
 app.use("/api/settings", require("../src/routes/settings"));
 
 app.get("/api/health", (req, res) => {
-  res.json({ status: "OK", database: "Connected" });
+  res.json({
+    status: "OK",
+    database:
+      mongoose.connection.readyState === 1 ? "Connected" : "Disconnected",
+  });
 });
 
 // Global Error Handler
 app.use((err, req, res, next) => {
-  console.error(err.stack);
+  console.error("Server Error:", err.stack);
   res.status(500).json({ message: "Internal Server Error" });
 });
 
