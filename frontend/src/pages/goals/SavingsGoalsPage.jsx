@@ -20,9 +20,10 @@ export default function SavingsGoalsPage() {
     fetchGoals();
   }, []);
 
+  // Fetch goals - FIXED: removed /api from path
   const fetchGoals = async () => {
     try {
-      const res = await api.get("/api/goals");
+      const res = await api.get("/goals");
       setGoals(res.data || []);
     } catch {
       toast.error("Failed to load goals");
@@ -41,10 +42,12 @@ export default function SavingsGoalsPage() {
 
     try {
       if (editingGoal) {
-        await api.put(`/api/goals/${editingGoal._id}`, formData);
+        // Update goal - FIXED: removed /api from path
+        await api.put(`/goals/${editingGoal._id}`, formData);
         toast.success("Goal updated successfully");
       } else {
-        await api.post("/api/goals", formData);
+        // Create goal - FIXED: removed /api from path
+        await api.post("/goals", formData);
         toast.success("Goal created successfully");
       }
 
@@ -73,7 +76,8 @@ export default function SavingsGoalsPage() {
     if (!window.confirm("Delete this goal?")) return;
 
     try {
-      await api.delete(`/api/goals/${id}`);
+      // Delete goal - FIXED: removed /api from path
+      await api.delete(`/goals/${id}`);
       toast.success("Goal deleted");
       fetchGoals();
     } catch {

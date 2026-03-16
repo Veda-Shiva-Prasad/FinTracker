@@ -3,14 +3,14 @@ import API from "../api";
 /**
  * Get all recurring transactions
  */
-export const getRecurringTransactions = () => API.get("/api/recurring");
+export const getRecurringTransactions = () => API.get("/recurring");
 
 /**
  * Create new recurring transaction
  * @param {Object} data - { name, amount, category, frequency, startDate, endDate, type }
  */
 export const createRecurringTransaction = (data) =>
-  API.post("/api/recurring", data);
+  API.post("/recurring", data);
 
 /**
  * Update recurring transaction
@@ -18,30 +18,30 @@ export const createRecurringTransaction = (data) =>
  * @param {Object} data - Updated data
  */
 export const updateRecurringTransaction = (id, data) =>
-  API.put(`/api/recurring/${id}`, data);
+  API.put(`/recurring/${id}`, data);
 
 /**
  * Delete recurring transaction
  * @param {string} id - Recurring transaction ID
  */
 export const deleteRecurringTransaction = (id) =>
-  API.delete(`/api/recurring/${id}`);
+  API.delete(`/recurring/${id}`);
 
 /**
  * Pause recurring transaction
  * @param {string} id - Recurring transaction ID
  */
 export const pauseRecurringTransaction = (id) =>
-  API.put(`/api/recurring/${id}/pause`);
+  API.put(`/recurring/${id}/pause`);
 
 /**
  * Resume recurring transaction
  * @param {string} id - Recurring transaction ID
  */
 export const resumeRecurringTransaction = (id) =>
-  API.put(`/api/recurring/${id}/resume`);
+  API.put(`/recurring/${id}/resume`);
 
 /**
  * Process due recurring transactions (admin/auto)
  */
-export const processDueRecurring = () => API.post("/api/recurring/process");
+export const processDueRecurring = () => API.post("/recurring/process");

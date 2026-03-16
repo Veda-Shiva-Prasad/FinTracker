@@ -9,48 +9,41 @@ export default function SettingsPage() {
 
   const toggleDark = () => {
     const enabled = document.documentElement.classList.toggle("dark");
-
     localStorage.setItem("theme", enabled ? "dark" : "light");
   };
 
   const logout = () => {
     localStorage.removeItem("token");
-
     window.location.href = "/login";
   };
 
+  // ✅ FIXED: removed /api from path
   const clearTransactions = async () => {
     if (!window.confirm("Delete ALL transactions?")) return;
 
     try {
-      await api.delete("/api/transactions/clear-all");
-
+      await api.delete("/transactions/clear-all"); // ✅ CHANGED: removed /api
       toast.success("All transactions deleted");
-
       window.location.reload();
     } catch {
       toast.error("Delete failed");
     }
   };
 
+  // ✅ FIXED: removed /api from path
   const exportData = async () => {
     try {
-      const res = await api.get("/api/transactions/export", {
+      const res = await api.get("/transactions/export", {
+        // ✅ CHANGED: removed /api
         responseType: "blob",
       });
 
       const blob = new Blob([res.data]);
-
       const url = window.URL.createObjectURL(blob);
-
       const a = document.createElement("a");
-
       a.href = url;
-
       a.download = "fintracker_data.csv";
-
       a.click();
-
       toast.success("Data exported");
     } catch {
       toast.error("Export failed");
@@ -68,7 +61,6 @@ export default function SettingsPage() {
 
         <div className="space-y-6">
           {/* Appearance */}
-
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -77,16 +69,13 @@ export default function SettingsPage() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <ShieldCheck className="text-blue-500" />
-
                 <div>
                   <h3 className="font-bold dark:text-white">Appearance</h3>
-
                   <p className="text-sm text-gray-400">
                     Toggle dark or light mode
                   </p>
                 </div>
               </div>
-
               <button
                 onClick={toggleDark}
                 className="p-3 rounded-xl bg-gray-100 dark:bg-slate-700"
@@ -97,7 +86,6 @@ export default function SettingsPage() {
           </motion.div>
 
           {/* Export */}
-
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -107,18 +95,15 @@ export default function SettingsPage() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <Download className="text-green-500" />
-
                 <div>
                   <h3 className="font-bold dark:text-white">
                     Export Transactions
                   </h3>
-
                   <p className="text-sm text-gray-400">
                     Download your transactions as CSV
                   </p>
                 </div>
               </div>
-
               <button
                 onClick={exportData}
                 className="bg-green-500 text-white px-4 py-2 rounded-xl"
@@ -129,7 +114,6 @@ export default function SettingsPage() {
           </motion.div>
 
           {/* Clear Data */}
-
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -139,16 +123,13 @@ export default function SettingsPage() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <Trash2 className="text-red-500" />
-
                 <div>
                   <h3 className="font-bold dark:text-white">Clear All Data</h3>
-
                   <p className="text-sm text-gray-400">
                     Delete all transactions permanently
                   </p>
                 </div>
               </div>
-
               <button
                 onClick={clearTransactions}
                 className="bg-red-500 text-white px-4 py-2 rounded-xl"
@@ -159,7 +140,6 @@ export default function SettingsPage() {
           </motion.div>
 
           {/* Logout */}
-
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -169,16 +149,13 @@ export default function SettingsPage() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <LogOut className="text-orange-500" />
-
                 <div>
                   <h3 className="font-bold dark:text-white">Logout</h3>
-
                   <p className="text-sm text-gray-400">
                     Sign out from your account
                   </p>
                 </div>
               </div>
-
               <button
                 onClick={logout}
                 className="bg-orange-500 text-white px-4 py-2 rounded-xl"

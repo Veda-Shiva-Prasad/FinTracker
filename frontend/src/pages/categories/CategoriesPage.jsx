@@ -15,10 +15,10 @@ export default function CategoriesPage() {
     fetchCategories();
   }, []);
 
-  // Fetch categories
+  // Fetch categories - FIXED: removed /api from path
   const fetchCategories = async () => {
     try {
-      const res = await api.get("/api/categories");
+      const res = await api.get("/categories");
       setCategories(res.data || []);
     } catch (err) {
       console.error(err);
@@ -28,7 +28,7 @@ export default function CategoriesPage() {
     }
   };
 
-  // Add category
+  // Add category - FIXED: removed /api from path
   const addCategory = async () => {
     if (!name) {
       toast.error("Category name required");
@@ -36,16 +36,14 @@ export default function CategoriesPage() {
     }
 
     try {
-      await api.post("/api/categories", {
+      await api.post("/categories", {
         name: name,
         type: type,
       });
 
       toast.success("Category added");
-
       setName("");
       setType("expense");
-
       fetchCategories();
     } catch (err) {
       console.error(err);
@@ -103,7 +101,6 @@ export default function CategoriesPage() {
                 className="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow"
               >
                 <h3 className="font-bold dark:text-white">{cat.name}</h3>
-
                 <p className="text-sm text-gray-400 mt-1">{cat.type}</p>
               </motion.div>
             ))}
