@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: fintracker-backend
+    env: node
+    buildCommand: npm install
+    startCommand: node api/index.js
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: NODE_ENV
+        value: production
